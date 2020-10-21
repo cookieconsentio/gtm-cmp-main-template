@@ -34,7 +34,18 @@ ___TEMPLATE_PARAMETERS___
     "name": "id",
     "displayName": "CookieConsent.io ID",
     "simpleValueType": true,
-    "valueHint": "000000000000-0000-0000-0000-000000000000"
+    "valueHint": "000000000000-0000-0000-0000-000000000000",
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      },
+      {
+        "type": "REGEX",
+        "args": [
+          "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+        ]
+      }
+    ]
   },
   {
     "type": "CHECKBOX",
@@ -122,11 +133,20 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-// Geef hier uw templatecode op.
 const log = require('logToConsole');
 const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
-const url = 'https://edge.cookieconsent.io/prod/js/' +data.id + '.js?hidden=' + data.hidden + '&backdrop=' + data.backdrop + '&backdrop_color=' + data.backdrop_color + '&position=' + data.position + '&functional=' + data.functional + '&marketing=' + data.marketing + '&analytics=' + data.analytics + '&google_consent_mode=' + data.google_consent_mode;
+const encodeUriComponent = require('encodeUriComponent');
+
+function boolToString(value) {
+    if(value) {
+       return 'true';
+    }
+  
+    return 'false';
+}
+
+const url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode));
 
 if (queryPermission('inject_script', url)) {
   
@@ -179,6 +199,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 10/19/2020, 11:38:00 AM
+Created on 10/21/2020, 9:27:49 AM
 
 
