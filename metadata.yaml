@@ -1,5 +1,9 @@
 homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
+
+  - sha: d3d0db0c9b3173b1e92edb718e52555bf7c74d5d
+    changeNotes: Added EncodeURIComponent and bool to string conversions
+
   - sha: f4ee22294c4444b5d5c7913f3adbf6ce8d7d1e78
     changeNotes: Initial release.
