@@ -126,7 +126,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "google_consent_mode",
     "checkboxText": "Enable Google Consent Mode",
     "simpleValueType": true,
-    "defaultValue": true
+    "defaultValue": false
   }
 ]
 
@@ -215,6 +215,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 10/23/2020, 9:02:14 AM
+Created on 10/23/2020, 9:08:00 AM
 
 
