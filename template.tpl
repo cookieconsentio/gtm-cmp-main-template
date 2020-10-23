@@ -185,7 +185,23 @@ ___WEB_PERMISSIONS___
         "publicId": "inject_script",
         "versionId": "1"
       },
-      "param": []
+      "param": [
+        {
+          "key": "urls",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "https://edge.cookieconsent.io/prod/js/*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   }
@@ -199,6 +215,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 10/21/2020, 9:27:49 AM
+Created on 10/23/2020, 9:02:14 AM
 
 
