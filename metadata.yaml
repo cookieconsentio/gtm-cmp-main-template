@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 5c9ee49bad4de1d00c857be1b59bbc2790efdab1
+    changeNotes: Added url restriction for inject script
+
   - sha: d3d0db0c9b3173b1e92edb718e52555bf7c74d5d
     changeNotes: Added EncodeURIComponent and bool to string conversions
 
