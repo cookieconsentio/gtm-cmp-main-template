@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 8bbcf8f1e6bdb55beec746efc7cb85239b8159f3
+    changeNotes: Added Font Metrics
+
   - sha: 26b9de9b4ce5b5aace233053da64c6eac98f0f21
     changeNotes: Disable default Google Consent Mode
 
