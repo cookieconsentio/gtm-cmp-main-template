@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 4fea8a86972a5ef7d3781e6d41bb0a9e213d5f82
+    changeNotes: Added window height, horizontal rule fix, pill color
+
   - sha: 8bbcf8f1e6bdb55beec746efc7cb85239b8159f3
     changeNotes: Added Font Metrics
 
