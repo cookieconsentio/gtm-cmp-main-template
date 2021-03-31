@@ -129,6 +129,13 @@ ___TEMPLATE_PARAMETERS___
     "defaultValue": false
   },
   {
+    "type": "CHECKBOX",
+    "name": "hiddenHorizontalRule",
+    "checkboxText": "Hide horizontal rule",
+    "simpleValueType": true,
+    "help": "Show or hide the horizontal rule in the consent screen"
+  },
+  {
     "type": "TEXT",
     "name": "font",
     "displayName": "Font family",
@@ -182,6 +189,21 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "TEXT",
+    "name": "pillColor",
+    "displayName": "Pill Color",
+    "simpleValueType": true,
+    "help": "Determine the color of the ‘Pill’ buttons in the setting screen. Value must be a hexidecimal color code (for example #000000).",
+    "valueValidators": [
+      {
+        "type": "REGEX",
+        "args": [
+          "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "TEXT",
     "name": "headerSize",
     "displayName": "Header font size",
     "simpleValueType": true,
@@ -207,7 +229,7 @@ ___TEMPLATE_PARAMETERS___
   {
     "type": "TEXT",
     "name": "bodySize",
-    "displayName": "Subheader font size",
+    "displayName": "Body font size",
     "simpleValueType": true,
     "help": "Determine the font size of the body text in pixels. Value must be an integer.",
     "valueValidators": [
@@ -215,6 +237,55 @@ ___TEMPLATE_PARAMETERS___
         "type": "POSITIVE_NUMBER"
       }
     ]
+  },
+  {
+    "type": "TEXT",
+    "name": "alwaysActiveSize",
+    "displayName": "Always active label font size",
+    "simpleValueType": true,
+    "help": "Determine the font size of the Always active option in pixels. Value must be an integer.",
+    "valueValidators": [
+      {
+        "type": "POSITIVE_NUMBER"
+      }
+    ]
+  },
+  {
+    "type": "TEXT",
+    "name": "consentHeight",
+    "displayName": "Consent window height",
+    "simpleValueType": true,
+    "help": "Determine the height of the consent window in pixels. Value must be an integer.",
+    "valueValidators": [
+      {
+        "type": "POSITIVE_NUMBER"
+      }
+    ]
+  },
+  {
+    "type": "SELECT",
+    "name": "titleTransform",
+    "displayName": "Transform titles",
+    "selectItems": [
+      {
+        "value": "none",
+        "displayValue": "None"
+      },
+      {
+        "value": "capitalize",
+        "displayValue": "Capitalize"
+      },
+      {
+        "value": "uppercase",
+        "displayValue": "Uppercase"
+      },
+      {
+        "value": "lowercase",
+        "displayValue": "Lowercase"
+      }
+    ],
+    "simpleValueType": true,
+    "notSetText": "Default"
   }
 ]
 
@@ -242,7 +313,8 @@ function addToURL(url, data, key) {
   return url;
 }
 
-let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode));
+let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + 'hiddenHorizontalRule=' +
+encodeUriComponent(boolToString(data.hiddenHorizontalRule));
 
 //Add optional fields
 url = addToURL(url, data, 'font');
@@ -252,6 +324,11 @@ url = addToURL(url, data, 'button3Color');
 url = addToURL(url, data, 'headerSize');
 url = addToURL(url, data, 'subheaderSize');
 url = addToURL(url, data, 'bodySize');
+
+url = addToURL(url, data, 'titleTransform');
+url = addToURL(url, data, 'consentHeight');
+url = addToURL(url, data, 'alwaysActiveSize');
+url = addToURL(url, data, 'pillColor');
 
 if (queryPermission('inject_script', url)) {
   
