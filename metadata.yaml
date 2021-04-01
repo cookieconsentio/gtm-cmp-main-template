@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: cf74edf482e26beb69e871a1e7ddcebd6ffafc9a
+    changeNotes: Patched bug in template for hidden horizontal rule
+
   - sha: 4fea8a86972a5ef7d3781e6d41bb0a9e213d5f82
     changeNotes: Added window height, horizontal rule fix, pill color
 
