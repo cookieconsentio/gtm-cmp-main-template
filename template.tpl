@@ -313,7 +313,7 @@ function addToURL(url, data, key) {
   return url;
 }
 
-let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + 'hiddenHorizontalRule=' +
+let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + '&hiddenHorizontalRule=' +
 encodeUriComponent(boolToString(data.hiddenHorizontalRule));
 
 //Add optional fields
@@ -398,3 +398,4 @@ scenarios: []
 ___NOTES___
 
 Created on 10/23/2020, 9:08:00 AM
+
