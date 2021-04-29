@@ -123,6 +123,27 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "CHECKBOX",
+    "name": "functionalDefaultChecked",
+    "checkboxText": "Default activate the ‘Functional cookies’ option",
+    "simpleValueType": true,
+    "defaultValue": false
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "analyticsDefaultChecked",
+    "checkboxText": "Default activate the \u0027Analytics cookies’ option",
+    "simpleValueType": true,
+    "defaultValue": false
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "marketingDefaultChecked",
+    "checkboxText": "Default activate the \u0027Marketing cookies’ option",
+    "simpleValueType": true,
+    "defaultValue": false
+  },
+  {
+    "type": "CHECKBOX",
     "name": "google_consent_mode",
     "checkboxText": "Enable Google Consent Mode",
     "simpleValueType": true,
@@ -313,8 +334,10 @@ function addToURL(url, data, key) {
   return url;
 }
 
-let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + '&hiddenHorizontalRule=' +
-encodeUriComponent(boolToString(data.hiddenHorizontalRule));
+let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + '&analyticsDefaultChecked=' + 
+encodeUriComponent(boolToString(data.analyticsDefaultChecked)) + '&functionalDefaultChecked=' + 
+encodeUriComponent(boolToString(data.functionalDefaultChecked)) + '&marketingDefaultChecked=' + 
+encodeUriComponent(boolToString(data.marketingDefaultChecked)) + '&hiddenHorizontalRule=' + encodeUriComponent(boolToString(data.hiddenHorizontalRule));
 
 //Add optional fields
 url = addToURL(url, data, 'font');
