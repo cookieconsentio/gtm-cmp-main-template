@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: bb7cf0439bf926975eb5292a7ca7cfec9f606d3d
+    changeNotes: Added default checked options
+
   - sha: cf74edf482e26beb69e871a1e7ddcebd6ffafc9a
     changeNotes: Patched bug in template for hidden horizontal rule
 
