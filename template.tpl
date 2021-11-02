@@ -147,7 +147,106 @@ ___TEMPLATE_PARAMETERS___
     "name": "google_consent_mode",
     "checkboxText": "Enable Google Consent Mode",
     "simpleValueType": true,
-    "defaultValue": false
+    "defaultValue": false,
+    "subParams": [
+      {
+        "type": "SELECT",
+        "name": "default_preferences_storage",
+        "displayName": "Default Preferences mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "SELECT",
+        "name": "default_ad_storage",
+        "displayName": "Default Marketing mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "SELECT",
+        "name": "default_analytics_storage",
+        "displayName": "Default Statistics mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "TEXT",
+        "name": "wait_for_update",
+        "displayName": "Wait for update",
+        "simpleValueType": true,
+        "defaultValue": 2000,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          },
+          {
+            "type": "NUMBER"
+          }
+        ]
+      }
+    ]
   },
   {
     "type": "CHECKBOX",
@@ -317,6 +416,7 @@ const log = require('logToConsole');
 const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
 const encodeUriComponent = require('encodeUriComponent');
+const setDefaultConsentState = require('setDefaultConsentState');
 
 function boolToString(value) {
     if(value) {
@@ -357,6 +457,17 @@ if (queryPermission('inject_script', url)) {
   
   // becomes
   injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
+  
+  if(data.google_consent_mode !== false) {
+  
+     setDefaultConsentState({
+    'functionality_storage': data.default_preferences_storage,
+    'personalization_storage': data.default_preferences_storage,  
+    'ad_storage': data.default_ad_storage,
+    'analytics_storage': data.default_analytics_storage,
+    'wait_for_update': data.wait_for_update
+    });
+  }
   
   // Roep data.gtmOnSuccess aan wanneer de tag is voltooid.
   data.gtmOnSuccess();
@@ -399,6 +510,183 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://edge.cookieconsent.io/prod/js/*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_consent",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "consentTypes",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "functionality_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "personalization_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "analytics_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "wait_for_update"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
