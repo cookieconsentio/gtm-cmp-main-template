@@ -151,7 +151,7 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "SELECT",
-        "name": "default_preferences_storage",
+        "name": "defaultPreferencesStorageGranted",
         "displayName": "Default Preferences mode",
         "macrosInSelect": false,
         "selectItems": [
@@ -176,7 +176,7 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "SELECT",
-        "name": "default_ad_storage",
+        "name": "defaultAdStorageGranted",
         "displayName": "Default Marketing mode",
         "macrosInSelect": false,
         "selectItems": [
@@ -201,7 +201,7 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "SELECT",
-        "name": "default_analytics_storage",
+        "name": "defaultAnalyticsStorageGranted",
         "displayName": "Default Statistics mode",
         "macrosInSelect": false,
         "selectItems": [
@@ -453,6 +453,10 @@ url = addToURL(url, data, 'consentHeight');
 url = addToURL(url, data, 'alwaysActiveSize');
 url = addToURL(url, data, 'pillColor');
 
+url = addToURL(url, data, 'defaultAnalyticsStorageGranted');
+url = addToURL(url, data, 'defaultAdStorageGranted');
+url = addToURL(url, data, 'defaultPreferencesStorageGranted');
+
 if (queryPermission('inject_script', url)) {
   
   // becomes
@@ -461,10 +465,10 @@ if (queryPermission('inject_script', url)) {
   if(data.google_consent_mode !== false) {
   
      setDefaultConsentState({
-    'functionality_storage': data.default_preferences_storage,
-    'personalization_storage': data.default_preferences_storage,  
-    'ad_storage': data.default_ad_storage,
-    'analytics_storage': data.default_analytics_storage,
+    'functionality_storage': data.defaultPreferencesStorageGranted,
+    'personalization_storage': data.defaultPreferencesStorageGranted,  
+    'ad_storage': data.defaultAdStorageGranted,
+    'analytics_storage': data.defaultAnalyticsStorageGranted,
     'wait_for_update': data.wait_for_update
     });
   }
@@ -709,4 +713,5 @@ scenarios: []
 ___NOTES___
 
 Created on 10/23/2020, 9:08:00 AM
+
 
