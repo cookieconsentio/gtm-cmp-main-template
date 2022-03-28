@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 750bfcf61c03d81dd49dbeef6d7ba6527a70e023
+    changeNotes: Added default consent mode fixes
+
   - sha: 0bf469a7adacc98bfc32e90204424290db57e9df
     changeNotes: Added template updates for Google Consent Mode
 
