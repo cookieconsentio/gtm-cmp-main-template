@@ -417,6 +417,7 @@ const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
 const encodeUriComponent = require('encodeUriComponent');
 const setDefaultConsentState = require('setDefaultConsentState');
+const getCookieValues = require('getCookieValues');
 
 function boolToString(value) {
     if(value) {
@@ -459,19 +460,34 @@ url = addToURL(url, data, 'defaultPreferencesStorageGranted');
 
 if (queryPermission('inject_script', url)) {
   
-  // becomes
-  injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
-  
   if(data.google_consent_mode !== false) {
   
-     setDefaultConsentState({
+    const settings = getCookieValues('cookie-consent-io');
+    
+    if(settings()) {
+     
+      let consentTypes = settings.split(',');
+      
+      if(consentTypes.includes('marketing')) {
+          data.defaultAdStorageGranted = true;
+      }
+      
+      if(consentTypes.includes('analytics')) {
+          data.defaultAnalyticsStorageGranted = true;
+      }
+    }   
+    
+    setDefaultConsentState({
     'functionality_storage': data.defaultPreferencesStorageGranted,
     'personalization_storage': data.defaultPreferencesStorageGranted,  
     'ad_storage': data.defaultAdStorageGranted,
     'analytics_storage': data.defaultAnalyticsStorageGranted,
     'wait_for_update': data.wait_for_update
     });
-  }
+  }  
+  
+  // becomes
+  injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
   
   // Roep data.gtmOnSuccess aan wanneer de tag is voltooid.
   data.gtmOnSuccess();
@@ -701,6 +717,39 @@ ___WEB_PERMISSIONS___
       "isEditedByUser": true
     },
     "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "get_cookies",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "cookieAccess",
+          "value": {
+            "type": 1,
+            "string": "specific"
+          }
+        },
+        {
+          "key": "cookieNames",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "cookie-consent-io"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
   }
 ]
 
@@ -713,5 +762,4 @@ scenarios: []
 ___NOTES___
 
 Created on 10/23/2020, 9:08:00 AM
-
 
