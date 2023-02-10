@@ -460,6 +460,9 @@ url = addToURL(url, data, 'defaultPreferencesStorageGranted');
 
 if (queryPermission('inject_script', url)) {
   
+  // becomes
+  injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
+  
   if(data.google_consent_mode !== false) {
   
     const settings = getCookieValues('cookie-consent-io');
@@ -485,9 +488,6 @@ if (queryPermission('inject_script', url)) {
     'wait_for_update': data.wait_for_update
     });
   }  
-  
-  // becomes
-  injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
   
   // Roep data.gtmOnSuccess aan wanneer de tag is voltooid.
   data.gtmOnSuccess();
