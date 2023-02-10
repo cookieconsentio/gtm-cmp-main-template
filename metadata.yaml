@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 8b3b8fc4cc6e6c5ae8647ebb24b6cae6f2f0b0e6
+    changeNotes: Changed consent read
+
   - sha: 356bfff41229fca5e9b9c0890f3150c7c14f1467
     changeNotes: Changed default consent state read
 
