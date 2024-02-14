@@ -462,32 +462,48 @@ if (queryPermission('inject_script', url)) {
   
   // becomes
   injectScript(url, data.gtmOnSuccess, data.gtmOnFailure, url);
-  
-  if(data.google_consent_mode !== false) {
-  
-    const settings = getCookieValues('cookie-consent-io');
     
-    if(settings()) {
-     
-      let consentTypes = settings.split(',');
+  if(boolToString(data.google_consent_mode) == 'true') {
+    
+    const settings = getCookieValues('cookie-consent-io');
       
-      if(consentTypes.includes('marketing')) {
-          data.defaultAdStorageGranted = true;
+    if(settings.length > 0) {
+                
+      settings.forEach(cookies => {
+    
+      cookies = cookies.split(',');
+        
+          cookies.forEach(type => {
+      
+      if(type == 'marketing') {      
+          data.defaultAdStorageGranted = 'granted';
       }
       
-      if(consentTypes.includes('analytics')) {
-          data.defaultAnalyticsStorageGranted = true;
+      if(type == 'analytics') {   
+          data.defaultAnalyticsStorageGranted = 'granted';
       }
+         
+      if(type == 'functional') {
+          data.defaultPreferencesStorageGranted = 'granted';
+      }            
+            
+          });
+      });
     }   
     
-    setDefaultConsentState({
+    const consentState = {
     'functionality_storage': data.defaultPreferencesStorageGranted,
     'personalization_storage': data.defaultPreferencesStorageGranted,  
+    'ad_user_data': data.defaultAdStorageGranted,
+    'ad_personalization': data.defaultAdStorageGranted,
     'ad_storage': data.defaultAdStorageGranted,
     'analytics_storage': data.defaultAnalyticsStorageGranted,
     'wait_for_update': data.wait_for_update
-    });
-  }  
+    };
+    
+    setDefaultConsentState(consentState);
+    
+   }     
   
   // Roep data.gtmOnSuccess aan wanneer de tag is voltooid.
   data.gtmOnSuccess();
@@ -512,6 +528,9 @@ ___WEB_PERMISSIONS___
           }
         }
       ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   },
@@ -697,6 +716,68 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "wait_for_update"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_user_data"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_personalization"
                   },
                   {
                     "type": 8,
