@@ -201,6 +201,56 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "SELECT",
+        "name": "defaultAdUserDataGranted",
+        "displayName": "Default Ad User Data mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "SELECT",
+        "name": "defaultAdPersonalizationGranted",
+        "displayName": "Default Ad Personalization mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "SELECT",
         "name": "defaultAnalyticsStorageGranted",
         "displayName": "Default Statistics mode",
         "macrosInSelect": false,
@@ -222,7 +272,7 @@ ___TEMPLATE_PARAMETERS___
             "type": "NOT_EQUALS"
           }
         ],
-        "defaultValue": "denied"
+        "defaultValue": "granted"
       },
       {
         "type": "TEXT",
@@ -457,6 +507,9 @@ url = addToURL(url, data, 'pillColor');
 url = addToURL(url, data, 'defaultAnalyticsStorageGranted');
 url = addToURL(url, data, 'defaultAdStorageGranted');
 url = addToURL(url, data, 'defaultPreferencesStorageGranted');
+url = addToURL(url, data, 'defaultSecurityStorageGranted');
+url = addToURL(url, data, 'defaultAdUserDataGranted');
+url = addToURL(url, data, 'defaultAdPersonalizationGranted');
 
 if (queryPermission('inject_script', url)) {
   
@@ -475,8 +528,14 @@ if (queryPermission('inject_script', url)) {
         
           cookies.forEach(type => {
       
+      if(type == 'essential') {      
+          data.defaultSecurityStorageGranted = 'granted';
+      }
+            
       if(type == 'marketing') {      
           data.defaultAdStorageGranted = 'granted';
+          data.defaultAdUserDataGranted = 'granted';
+          data.defaultAdPersonalizationGranted = 'granted';        
       }
       
       if(type == 'analytics') {   
@@ -492,10 +551,11 @@ if (queryPermission('inject_script', url)) {
     }   
     
     const consentState = {
+    'security_storage': data.defaultSecurityStorageGranted,      
     'functionality_storage': data.defaultPreferencesStorageGranted,
     'personalization_storage': data.defaultPreferencesStorageGranted,  
-    'ad_user_data': data.defaultAdStorageGranted,
-    'ad_personalization': data.defaultAdStorageGranted,
+    'ad_user_data': data.defaultAdUserDataGranted,
+    'ad_personalization': data.defaultAdPersonalizationGranted,
     'ad_storage': data.defaultAdStorageGranted,
     'analytics_storage': data.defaultAnalyticsStorageGranted,
     'wait_for_update': data.wait_for_update
