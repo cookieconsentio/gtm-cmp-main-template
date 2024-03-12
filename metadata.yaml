@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: ce803959f0947efb11d7ea5df6ab2f5004bf4058
+    changeNotes: Added security storage rights
+
   - sha: d27b86c860d07a44b23fd8374abdfe14a15c1f37
     changeNotes: Added security storage
 
