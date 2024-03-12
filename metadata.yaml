@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: e6bdf2347ddd3c2a22c3d9e32faec631f4cd1075
+    changeNotes: Added button 4 color
+
   - sha: 274d23d9edf45bdc588b37a52bfe8d2d4d84edc8
     changeNotes: Added new defaults for consent mode
 
