@@ -359,6 +359,21 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "TEXT",
+    "name": "button4Color",
+    "displayName": "Button 4 Color",
+    "simpleValueType": true,
+    "help": "Determine the color of the ‘Reject’ button. Value must be a hexidecimal color code (for example #000000).",
+    "valueValidators": [
+      {
+        "type": "REGEX",
+        "args": [
+          "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "TEXT",
     "name": "pillColor",
     "displayName": "Pill Color",
     "simpleValueType": true,
@@ -495,6 +510,7 @@ url = addToURL(url, data, 'font');
 url = addToURL(url, data, 'button1Color');
 url = addToURL(url, data, 'button2Color');
 url = addToURL(url, data, 'button3Color');
+url = addToURL(url, data, 'button4Color');
 url = addToURL(url, data, 'headerSize');
 url = addToURL(url, data, 'subheaderSize');
 url = addToURL(url, data, 'bodySize');
