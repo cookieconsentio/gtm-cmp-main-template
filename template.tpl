@@ -272,6 +272,31 @@ ___TEMPLATE_PARAMETERS___
             "type": "NOT_EQUALS"
           }
         ],
+        "defaultValue": "denied"
+      },
+      {
+        "type": "SELECT",
+        "name": "defaultSecurityStorageGranted",
+        "displayName": "Default Statistics mode",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "denied",
+            "displayValue": "Denied"
+          },
+          {
+            "value": "granted",
+            "displayValue": "Granted"
+          }
+        ],
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "google_consent_mode",
+            "paramValue": false,
+            "type": "NOT_EQUALS"
+          }
+        ],
         "defaultValue": "granted"
       },
       {
