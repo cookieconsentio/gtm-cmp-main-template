@@ -147,7 +147,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "google_consent_mode",
     "checkboxText": "Enable Google Consent Mode",
     "simpleValueType": true,
-    "defaultValue": false,
+    "defaultValue": true,
     "subParams": [
       {
         "type": "SELECT",
@@ -277,7 +277,7 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "SELECT",
         "name": "defaultSecurityStorageGranted",
-        "displayName": "Default Statistics mode",
+        "displayName": "Default Security storage mode",
         "macrosInSelect": false,
         "selectItems": [
           {
@@ -879,6 +879,37 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "ad_personalization"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "security_storage"
                   },
                   {
                     "type": 8,
