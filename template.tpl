@@ -328,7 +328,8 @@ ___TEMPLATE_PARAMETERS___
     "name": "hiddenHorizontalRule",
     "checkboxText": "Hide horizontal rule",
     "simpleValueType": true,
-    "help": "Show or hide the horizontal rule in the consent screen"
+    "help": "Show or hide the horizontal rule in the consent screen",
+    "defaultValue": true
   },
   {
     "type": "TEXT",
