@@ -320,6 +320,37 @@ ___TEMPLATE_PARAMETERS___
             "type": "NUMBER"
           }
         ]
+      },
+      {
+        "type": "SELECT",
+        "name": "ads_data_redaction",
+        "displayName": "Redact ads data",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": false,
+            "displayValue": "False"
+          },
+          {
+            "value": true,
+            "displayValue": "True"
+          },
+          {
+            "value": "dynamic",
+            "displayValue": "Dynamic (match ad_storage)"
+          }
+        ],
+        "simpleValueType": true,
+        "help": "When ad data redaction is true and marketing cookies are denied, ad click identifiers sent in network requests by Google Ads and Floodlight tags wille be redacted. Network requests will be send through a cookieless domain.",
+        "defaultValue": false
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "url_passthrough",
+        "checkboxText": "Enable URL passthrough",
+        "simpleValueType": true,
+        "help": "When using URL passthrough, a few query parameters may be appended to links as users navigate through pages on the website",
+        "defaultValue": false
       }
     ]
   },
@@ -509,6 +540,7 @@ const queryPermission = require('queryPermission');
 const encodeUriComponent = require('encodeUriComponent');
 const setDefaultConsentState = require('setDefaultConsentState');
 const getCookieValues = require('getCookieValues');
+const gtagSet = require('gtagSet');
 
 function boolToString(value) {
     if(value) {
@@ -591,6 +623,21 @@ if (queryPermission('inject_script', url)) {
           });
       });
     }   
+        gtagSet('url_passthrough', data.url_passthrough);
+    
+    if(data.ads_data_redaction == 'dynamic') {
+            
+      if(data.defaultAdStorageGranted == 'denied') {
+                
+          gtagSet('ads_data_redaction', true);         
+      }
+      else {        
+          gtagSet('ads_data_redaction', false);       
+      }
+    }
+    else {
+        gtagSet('ads_data_redaction', data.ads_data_redaction); 
+    }
     
     const consentState = {
     'security_storage': data.defaultSecurityStorageGranted,      
@@ -954,6 +1001,36 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "cookie-consent-io"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "write_data_layer",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keyPatterns",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "ads_data_redaction"
+              },
+              {
+                "type": 1,
+                "string": "url_passthrough"
               }
             ]
           }
