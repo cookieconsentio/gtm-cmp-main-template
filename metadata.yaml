@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 37faa1f6485e308419cc2b937a9b587fb609bae5
+    changeNotes: Added ads data redaction and url passthrough
+
   - sha: c178c08b8e12dbc82e5984395a5bd3dc45d2d77b
     changeNotes: Default hide horizontal rule
 
