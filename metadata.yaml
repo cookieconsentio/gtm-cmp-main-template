@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: 45f9273cbc85bbd97f7bcf325cd5f14bcc9b6933
+    changeNotes: Added Microsoft Consent Mode
+
   - sha: 37faa1f6485e308419cc2b937a9b587fb609bae5
     changeNotes: Added ads data redaction and url passthrough
 
