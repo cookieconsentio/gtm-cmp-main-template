@@ -150,13 +150,6 @@ ___TEMPLATE_PARAMETERS___
     "defaultValue": true,
     "subParams": [
       {
-        "type": "CHECKBOX",
-        "name": "microsoft_consent_mode",
-        "checkboxText": "Enable Microsoft Consent Mode",
-        "simpleValueType": true,
-        "defaultValue": false
-      },
-      {
         "type": "SELECT",
         "name": "defaultPreferencesStorageGranted",
         "displayName": "Default Preferences mode",
@@ -357,6 +350,13 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Enable URL passthrough",
         "simpleValueType": true,
         "help": "When using URL passthrough, a few query parameters may be appended to links as users navigate through pages on the website",
+        "defaultValue": false
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "microsoft_consent_mode",
+        "checkboxText": "Enable Microsoft Consent Mode",
+        "simpleValueType": true,
         "defaultValue": false
       }
     ]
