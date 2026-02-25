@@ -370,6 +370,13 @@ ___TEMPLATE_PARAMETERS___
     "defaultValue": true
   },
   {
+    "type": "CHECKBOX",
+    "name": "reloadOnConsent",
+    "checkboxText": "Reload on consent",
+    "simpleValueType": true,
+    "defaultValue": false
+  },
+  {
     "type": "TEXT",
     "name": "font",
     "displayName": "Font family",
