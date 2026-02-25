@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: fe87273f15a2c93b992512c8ff7b462531d51b0f
+    changeNotes: Modified reload consent script
+
   - sha: a4f0bd48e4412afe0512c480af96bff4e3ef0a3f
     changeNotes: Added option for reloading window
 
