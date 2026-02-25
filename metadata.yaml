@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: a4f0bd48e4412afe0512c480af96bff4e3ef0a3f
+    changeNotes: Added option for reloading window
+
   - sha: b833dbca447b986d6d17721158728015d0dbc44d
     changeNotes: Moved Microsoft Consent Mode
 
