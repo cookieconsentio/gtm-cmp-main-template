@@ -377,6 +377,13 @@ ___TEMPLATE_PARAMETERS___
     "defaultValue": false
   },
   {
+    "type": "CHECKBOX",
+    "name": "widget",
+    "checkboxText": "Show settings widget in left corner",
+    "simpleValueType": true,
+    "defaultValue": false
+  },
+  {
     "type": "TEXT",
     "name": "font",
     "displayName": "Font family",
@@ -575,7 +582,7 @@ function addToURL(url, data, key) {
 let url = 'https://edge.cookieconsent.io/prod/js/' + encodeUriComponent(data.id) + '.js?hidden=' + encodeUriComponent(boolToString(data.hidden)) + '&backdrop=' + encodeUriComponent(boolToString(data.backdrop)) + '&backdrop_color=' + encodeUriComponent(data.backdrop_color) + '&position=' + encodeUriComponent(data.position) + '&functional=' + encodeUriComponent(boolToString(data.functional)) + '&marketing=' + encodeUriComponent(boolToString(data.marketing)) + '&analytics=' + encodeUriComponent(boolToString(data.analytics)) + '&google_consent_mode=' + encodeUriComponent(boolToString(data.google_consent_mode)) + '&microsoft_consent_mode=' + encodeUriComponent(boolToString(data.microsoft_consent_mode)) + '&analyticsDefaultChecked=' + 
 encodeUriComponent(boolToString(data.analyticsDefaultChecked)) + '&functionalDefaultChecked=' + 
 encodeUriComponent(boolToString(data.functionalDefaultChecked)) + '&marketingDefaultChecked=' + 
-encodeUriComponent(boolToString(data.marketingDefaultChecked)) + '&hiddenHorizontalRule=' + encodeUriComponent(boolToString(data.hiddenHorizontalRule)) + '&reloadOnConsent=' + encodeUriComponent(boolToString(data.reloadOnConsent));
+encodeUriComponent(boolToString(data.marketingDefaultChecked)) + '&hiddenHorizontalRule=' + encodeUriComponent(boolToString(data.hiddenHorizontalRule)) + '&reloadOnConsent=' + encodeUriComponent(boolToString(data.reloadOnConsent)) + '&widget=' + encodeUriComponent(boolToString(data.widget));
 
 //Add optional fields
 url = addToURL(url, data, 'font');
