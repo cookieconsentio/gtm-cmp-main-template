@@ -2,6 +2,9 @@ homepage: "https://www.cookieconsent.io/"
 documentation: "https://www.cookieconsent.io/developers/"
 versions:
 
+  - sha: a5ff8fc59ce54ce94d697d5db972f0ba5b20360d
+    changeNotes: Added widget option
+
   - sha: fe87273f15a2c93b992512c8ff7b462531d51b0f
     changeNotes: Modified reload consent script
 
